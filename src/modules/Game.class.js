@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 'use strict';
 
 /**
@@ -58,6 +59,9 @@ class Game {
   }
 
   moveLeft() {
+    // eslint-disable-next-line prettier/prettier
+    const prevField = this.field.map(row => [...row]);
+
     for (let i = 0; i < 4; i++) {
       let lastMergePos = -1;
       let pos = 0;
@@ -85,10 +89,16 @@ class Game {
         }
       }
     }
-    this._addRandomTile();
+
+    if (!this._fieldsEqual(prevField, this.field)) {
+      this._addRandomTile();
+    }
     this._checkLose();
   }
   moveRight() {
+    // eslint-disable-next-line prettier/prettier
+    const prevField = this.field.map(row => [...row]);
+
     for (let i = 0; i < 4; i++) {
       let lastMergePos = 4;
       let pos = 3;
@@ -116,11 +126,17 @@ class Game {
         }
       }
     }
-    this._addRandomTile();
+
+    if (!this._fieldsEqual(prevField, this.field)) {
+      this._addRandomTile();
+    }
     this._checkLose();
   }
 
   moveUp() {
+    // eslint-disable-next-line prettier/prettier
+    const prevField = this.field.map(row => [...row]);
+
     for (let j = 0; j < 4; j++) {
       let pos = 0;
       let lastMergePos = 4;
@@ -149,10 +165,16 @@ class Game {
         }
       }
     }
-    this._addRandomTile();
+
+    if (!this._fieldsEqual(prevField, this.field)) {
+      this._addRandomTile();
+    }
     this._checkLose();
   }
   moveDown() {
+    // eslint-disable-next-line prettier/prettier
+    const prevField = this.field.map(row => [...row]);
+
     for (let j = 0; j < 4; j++) {
       let pos = 3;
       let lastMergePos = -1;
@@ -181,7 +203,10 @@ class Game {
         }
       }
     }
-    this._addRandomTile();
+
+    if (!this._fieldsEqual(prevField, this.field)) {
+      this._addRandomTile();
+    }
     this._checkLose();
   }
 
@@ -284,6 +309,18 @@ class Game {
 
     messageWin.classList.toggle('hidden', status !== 'win');
     messageLose.classList.toggle('hidden', status !== 'lose');
+  }
+
+  _fieldsEqual(field1, field2) {
+    for (let i = 0; i < 4; i++) {
+      for (let j = 0; j < 4; j++) {
+        if (field1[i][j] !== field2[i][j]) {
+          return false;
+        }
+      }
+    }
+
+    return true;
   }
 }
 

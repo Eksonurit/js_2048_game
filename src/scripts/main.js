@@ -51,6 +51,7 @@ document.addEventListener('keydown', (e) => {
 
 startBtn.addEventListener('click', () => {
   game.restart();
+  game.start();
   renderGame();
 
   messageStart.classList.add('hidden');
