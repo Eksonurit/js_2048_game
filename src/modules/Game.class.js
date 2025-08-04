@@ -259,6 +259,32 @@ class Game {
 
     return true;
   }
+  render({ cells, scoreElement, messageWin, messageLose }) {
+    const state = this.getState();
+
+    for (let i = 0; i < 4; i++) {
+      for (let j = 0; j < 4; j++) {
+        const cell = cells[i * 4 + j];
+        const value = state[i][j];
+
+        cell.textContent = '';
+        cell.className = 'field-cell';
+
+        if (value !== 0) {
+          cell.textContent = value;
+          cell.classList.add(`field-cell--${value}`);
+        }
+      }
+    }
+
+    scoreElement.textContent = this.getScore();
+
+    // eslint-disable-next-line no-shadow
+    const status = this.getStatus();
+
+    messageWin.classList.toggle('hidden', status !== 'win');
+    messageLose.classList.toggle('hidden', status !== 'lose');
+  }
 }
 
 module.exports = Game;
