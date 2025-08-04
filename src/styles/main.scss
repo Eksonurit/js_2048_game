@@ -139,7 +139,7 @@ h1 {
 
 .start {
   background: #1dae28;
-  font-size: 20px;
+  font-size: 18px;
 
   &:hover {
     background: #179921;
@@ -148,6 +148,7 @@ h1 {
 
 .restart {
   background: #f1b2b2;
+  font-size: 18px;
 
   &:hover {
     background: #f87474;
@@ -189,4 +190,5 @@ h1 {
 .restart-active {
   background-color: #e74c3c;
   color: white;
+  font-size: 18px;
 }

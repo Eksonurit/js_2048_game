@@ -56,4 +56,5 @@ startBtn.addEventListener('click', () => {
 
   messageStart.classList.add('hidden');
   startBtn.textContent = 'Restart';
+  startBtn.style.textAlign = 'center';
 });
